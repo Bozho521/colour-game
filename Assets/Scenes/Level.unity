@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 3
+  myLadderColor: {r: 0.2901961, g: 0.89411765, b: 0.8, a: 0}
 --- !u!1 &229146467
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 3
+  myLadderColor: {r: 0.2901961, g: 0.89411765, b: 0.8, a: 0}
 --- !u!1 &255623670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 1
+  myLadderColor: {r: 0.68235296, g: 0.89411765, b: 0.2901961, a: 0}
 --- !u!1 &711558918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7349947712373590857, guid: efb7224ad0adf5843a1316c8bbe2688d, type: 3}
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 0
+  myLadderColor: {r: 0.49803922, g: 0.2901961, b: 0.89411765, a: 1}
 --- !u!61 &742556968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 2
+  myLadderColor: {r: 0.89411765, g: 0.2901961, b: 0.38039216, a: 1}
 --- !u!61 &804672319
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1738,7 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 1
+  myLadderColor: {r: 0.68235296, g: 0.89411765, b: 0.2901961, a: 0}
 --- !u!1 &908101316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +1966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 0
+  myLadderColor: {r: 0.49803922, g: 0.2901961, b: 0.89411765, a: 1}
 --- !u!1 &1028501779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,7 +2818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 3
+  myLadderColor: {r: 0.2901961, g: 0.89411765, b: 0.8, a: 0}
 --- !u!1001 &1363825131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 0
+  myLadderColor: {r: 0.49803922, g: 0.2901961, b: 0.89411765, a: 1}
 --- !u!4 &1425415162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
@@ -3079,7 +3079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e74f28c892f0b4fa6fd43ac44dafe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorLadder
-  ladderColorIndex: 1
+  myLadderColor: {r: 0.68235296, g: 0.89411765, b: 0.2901961, a: 0}
 --- !u!1 &1453010562
 GameObject:
   m_ObjectHideFlags: 0
