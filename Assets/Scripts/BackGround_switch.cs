@@ -4,26 +4,26 @@ using UnityEngine.InputSystem;
 public class BackGround_switch : MonoBehaviour
 {
     public Color[] colors = new Color[4];
+    public static int CurrentColorIndex = 0;
     private Renderer _renderer;
-    private int _currentIndex = 0;
 
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        if (colors.Length > 0) UpdateColor();
     }
 
     void Update()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (colors.Length > 0 && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            ChangeColor();
+            CurrentColorIndex = (CurrentColorIndex + 1) % colors.Length;
+            UpdateColor();
         }
     }
 
-    void ChangeColor()
+    void UpdateColor()
     {
-        if (colors.Length == 0) return;
-        _currentIndex = (_currentIndex + 1) % colors.Length;
-        _renderer.material.color = colors[_currentIndex];
+        _renderer.material.color = colors[CurrentColorIndex];
     }
 }
