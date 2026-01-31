@@ -21,7 +21,8 @@ public class BackGround_switch : MonoBehaviour
 
     void Start()
     {
-        if (colors.Length > 0) StartCoroutine(SetColor(colors[CurrentColorIndex]));
+        if (colors.Length > 0) Debug.Log("Initial Color: " + colors[CurrentColorIndex]);
+        //StartCoroutine(SetColor(colors[CurrentColorIndex]));
     }
 
     void Update()
