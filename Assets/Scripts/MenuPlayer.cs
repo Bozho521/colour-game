@@ -13,7 +13,7 @@ public class MenuPlayer : MonoBehaviour
         if (collision == playCollider && !loading)
         {
             loading = true;
-            StartCoroutine(mm.PlayWithDelay(2f));
+            StartCoroutine(mm.PlayWithDelay(1.35f));
         }
         else if (collision == quitCollider && !loading)
         {
