@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D coll;
     private float horizontalInput;
     private float currentSpeed;
+    private float jumpCooldownTimer;
 
     void Start()
     {
@@ -31,23 +32,32 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = Mathf.Clamp(currentSpeed, -topSpeed, topSpeed);
         rb.linearVelocityX = currentSpeed;
     }
+
     bool isGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+        return hit.collider != null && !hit.collider.isTrigger;
     }
 
     void Update()
     {
-        //baby's first coyote time
-        if(isGrounded())
+        if (jumpCooldownTimer > 0)
+            jumpCooldownTimer -= Time.deltaTime;
+
+        // baby's first coyote time
+        if (isGrounded() && jumpCooldownTimer <= 0)
             mayJump = 0.5f;
         else
             mayJump -= Time.deltaTime;
 
         if (Input.GetButtonDown("Jump") && mayJump > 0f)
         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+
             rb.AddForce(new Vector2(0, Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y))), ForceMode2D.Impulse);
+
             mayJump = 0f;
+            jumpCooldownTimer = 0.2f;
         }
     }
 }
