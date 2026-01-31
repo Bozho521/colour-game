@@ -6,41 +6,39 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float topSpeed = 6.0f;
     [SerializeField] private float acceleration = 25.0f;
     [SerializeField] private float jumpHeight = 10.0f;
+    [SerializeField] private float climbSpeed = 5.0f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] [Tooltip("Coyote Time")] private float mayJump = 0.5f;
 
     private Rigidbody2D rb;
     private Collider2D coll;
     private float horizontalInput;
+    private float verticalInput;
     private float currentSpeed;
     private float jumpCooldownTimer;
+    private float originalGravity;
 
     private bool facingRight = true;
+    private bool isOnLadder = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        originalGravity = rb.gravityScale;
     }
 
-    void FixedUpdate()
+    public void SetOnLadder(bool state)
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        if (Mathf.Abs(rb.linearVelocity.x) < topSpeed)
-            rb.AddForce(new Vector2(horizontalInput * acceleration, 0));
-
-        currentSpeed = rb.linearVelocity.x;
-        currentSpeed = Mathf.Clamp(currentSpeed, -topSpeed, topSpeed);
-        rb.linearVelocityX = currentSpeed;
-
-        if (horizontalInput > 0 && facingRight)
+        isOnLadder = state;
+        if (isOnLadder)
         {
-            Flip();
+            rb.gravityScale = 0;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         }
-        else if (horizontalInput < 0 && !facingRight)
+        else
         {
-            Flip();
+            rb.gravityScale = originalGravity;
         }
     }
 
@@ -60,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
         if (jumpCooldownTimer > 0)
             jumpCooldownTimer -= Time.deltaTime;
 
@@ -69,8 +70,9 @@ public class PlayerMovement : MonoBehaviour
         else
             mayJump -= Time.deltaTime;
 
-        if (Input.GetButtonDown("Jump") && mayJump > 0f)
+        if (Input.GetButtonDown("Jump") && (mayJump > 0f || isOnLadder))
         {
+            SetOnLadder(false);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
 
             rb.AddForce(new Vector2(0, Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y))), ForceMode2D.Impulse);
@@ -78,5 +80,24 @@ public class PlayerMovement : MonoBehaviour
             mayJump = 0f;
             jumpCooldownTimer = 0.2f;
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (Mathf.Abs(rb.linearVelocity.x) < topSpeed)
+            rb.AddForce(new Vector2(horizontalInput * acceleration, 0));
+
+        float targetX = Mathf.Clamp(rb.linearVelocity.x, -topSpeed, topSpeed);
+
+        float targetY = rb.linearVelocity.y;
+        if (isOnLadder)
+        {
+            targetY = verticalInput * climbSpeed;
+        }
+
+        rb.linearVelocity = new Vector2(targetX, targetY);
+
+        if (horizontalInput > 0 && !facingRight) Flip();
+        else if (horizontalInput < 0 && facingRight) Flip();
     }
 }

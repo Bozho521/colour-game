@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9008834999539460596}
   - component: {fileID: 8840070272856684067}
   - component: {fileID: 4627391049468441119}
+  - component: {fileID: 7692645065394683925}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +53,7 @@ MonoBehaviour:
   topSpeed: 6
   acceleration: 25
   jumpHeight: 10
+  climbSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -175,6 +177,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.05, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7692645065394683925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160562305478190886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2ab4f6e6888c940826487c169a4092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHats
+  hatSlots:
+  - {fileID: 8244133258654369149}
+  - {fileID: 1441439221334444449}
+  - {fileID: 600679670037632274}
+  - {fileID: 5199541896525099378}
 --- !u!1 &7059780556182842616
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,8 +345,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed975e93164b240358a8da53da7344c5, type: 3}
+--- !u!212 &600679670037632274 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2375173753351803487, guid: ed975e93164b240358a8da53da7344c5, type: 3}
+  m_PrefabInstance: {fileID: 2927415675569424205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1441439221334444449 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4368843887285718764, guid: ed975e93164b240358a8da53da7344c5, type: 3}
+  m_PrefabInstance: {fileID: 2927415675569424205}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4027019441665086446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2252536294816339107, guid: ed975e93164b240358a8da53da7344c5, type: 3}
+  m_PrefabInstance: {fileID: 2927415675569424205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5199541896525099378 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6955878642536314431, guid: ed975e93164b240358a8da53da7344c5, type: 3}
+  m_PrefabInstance: {fileID: 2927415675569424205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8244133258654369149 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6541846309939839536, guid: ed975e93164b240358a8da53da7344c5, type: 3}
   m_PrefabInstance: {fileID: 2927415675569424205}
   m_PrefabAsset: {fileID: 0}

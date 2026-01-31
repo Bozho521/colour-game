@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class ColorTile : MonoBehaviour
 {
+    [SerializeField] private float switchBuffer;
+
     public int tileColorIndex;
+    private float _bufferTimer;
+    private bool _targetTriggerState;
+
     private Collider2D _collider2D;
     private GameObject _player;
     private Collider2D _playerCol;
@@ -25,6 +30,24 @@ public class ColorTile : MonoBehaviour
 
         bool shouldBeTrigger = (BackGround_switch.CurrentColorIndex == tileColorIndex);
 
+        if (shouldBeTrigger != _targetTriggerState)
+        {
+            _targetTriggerState = shouldBeTrigger;
+            _bufferTimer = switchBuffer;
+        }
+
+        if (_bufferTimer > 0)
+        {
+            _bufferTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ApplyColliderLogic(_targetTriggerState);
+        }
+    }
+
+    void ApplyColliderLogic(bool shouldBeTrigger)
+    {
         if (_collider2D.isTrigger && !shouldBeTrigger)
         {
             _collider2D.isTrigger = false;
