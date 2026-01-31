@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class BackGround_switch : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class BackGround_switch : MonoBehaviour
     [SerializeField] private SpriteRenderer transition;
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private float transitionSpeed = 1.0f;
+    [SerializeField] private AudioClip SwirlySound;
 
     private float lerpTarget;
     private float currentFade = 0f;
     private Coroutine colorCoroutine;
+    private AudioSource audioSource;
 
     [SerializeField] private bool readyToSwitch = true;
 
@@ -27,6 +30,8 @@ public class BackGround_switch : MonoBehaviour
     void Start()
     {
         transition.material.SetFloat("_FadeAmount", 0);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = SwirlySound;
     }
 
     void Update()
@@ -53,6 +58,8 @@ public class BackGround_switch : MonoBehaviour
 
         if (colorCoroutine != null) StopCoroutine(colorCoroutine);
         colorCoroutine = StartCoroutine(TransitionRoutine(targetColor));
+
+        audioSource.Play();
     }
 
     public Color GetCurrentColor()
