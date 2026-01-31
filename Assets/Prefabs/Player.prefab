@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   topSpeed: 6
   acceleration: 25
-  jumpHeight: 10
+  jumpHeight: 12.5
   climbSpeed: 5
   groundLayer:
     serializedVersion: 2
