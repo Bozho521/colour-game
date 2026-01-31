@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float jumpHeight = 2.0f;
+    [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -34,6 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
     }
 }
