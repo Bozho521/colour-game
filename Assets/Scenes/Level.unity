@@ -289,91 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2cf310c1b80bd4d90d67875dc3c6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HatCollectible
---- !u!1001 &146454992
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 255623672}
-    m_Modifications:
-    - target: {fileID: 2393956091119055524, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Name
-      value: HatSpawn (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.b
-      value: 0.12156863
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.g
-      value: 0.92941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.r
-      value: 0.99215686
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -24.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.24685
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
---- !u!4 &146454993 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-  m_PrefabInstance: {fileID: 146454992}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &146454994 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3409611439958399549, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-  m_PrefabInstance: {fileID: 146454992}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2cf310c1b80bd4d90d67875dc3c6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HatCollectible
 --- !u!1 &203766125
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +508,6 @@ MonoBehaviour:
   - {fileID: 469855026}
   - {fileID: 22043879}
   - {fileID: 762843128}
-  - {fileID: 146454994}
   - {fileID: 454085526}
   - {fileID: 295150192}
   - {fileID: 119822435}
@@ -622,7 +536,6 @@ Transform:
   - {fileID: 469855025}
   - {fileID: 22043878}
   - {fileID: 762843127}
-  - {fileID: 146454993}
   - {fileID: 454085525}
   - {fileID: 295150191}
   - {fileID: 119822434}
@@ -4073,7 +3986,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
