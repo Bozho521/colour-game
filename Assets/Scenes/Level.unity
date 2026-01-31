@@ -289,91 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2cf310c1b80bd4d90d67875dc3c6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HatCollectible
---- !u!1001 &146454992
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 255623672}
-    m_Modifications:
-    - target: {fileID: 2393956091119055524, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Name
-      value: HatSpawn (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.b
-      value: 0.12156863
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.g
-      value: 0.92941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 4988045595503632027, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_Color.r
-      value: 0.99215686
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -24.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.24685
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
---- !u!4 &146454993 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8864982528851342574, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-  m_PrefabInstance: {fileID: 146454992}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &146454994 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3409611439958399549, guid: 9ad94214e5ceb44519c21b14224f0458, type: 3}
-  m_PrefabInstance: {fileID: 146454992}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2cf310c1b80bd4d90d67875dc3c6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HatCollectible
 --- !u!1 &203766125
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +508,6 @@ MonoBehaviour:
   - {fileID: 469855026}
   - {fileID: 22043879}
   - {fileID: 762843128}
-  - {fileID: 146454994}
   - {fileID: 454085526}
   - {fileID: 295150192}
   - {fileID: 119822435}
@@ -622,7 +536,6 @@ Transform:
   - {fileID: 469855025}
   - {fileID: 22043878}
   - {fileID: 762843127}
-  - {fileID: 146454993}
   - {fileID: 454085525}
   - {fileID: 295150191}
   - {fileID: 119822434}
@@ -1873,7 +1786,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4429683136227084396, guid: 07bb8bfe5709c4fa1846f1d593047863, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a993f6c880604e1793b83fee67e8e23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2103,7 +2016,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4778870105266271298, guid: c68524e16ec054eca93036a7ae9e7572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6759ed6fa0ac417c9a920036807f8c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2318,13 +2231,21 @@ PolygonCollider2D:
     - - {x: 37.399483, y: -26.336779}
       - {x: 40.697304, y: -26.252184}
       - {x: 40.687588, y: -25.28748}
-      - {x: 43.60051, y: -25.198273}
-      - {x: 43.68511, y: -22.816826}
+      - {x: 45.257866, y: -25.066736}
+      - {x: 45.28985, y: -22.843132}
       - {x: 37.77662, y: -22.816826}
       - {x: 37.399483, y: -23.131107}
     - - {x: -39.725163, y: -20.554}
       - {x: -39.97659, y: -20.616858}
-      - {x: -39.97659, y: -26.022497}
+      - {x: -39.976585, y: -24.445797}
+      - {x: -43.720116, y: -24.431498}
+      - {x: -43.757317, y: -25.144558}
+      - {x: -44.19925, y: -25.248}
+      - {x: -44.280613, y: -28.648087}
+      - {x: -43.07165, y: -28.649557}
+      - {x: -43.01543, y: -28.977596}
+      - {x: -40.84074, y: -28.975477}
+      - {x: -40.744457, y: -25.910479}
       - {x: -37.525196, y: -26.022497}
       - {x: -37.525196, y: -20.554}
     - - {x: -15.776924, y: -16.091206}
@@ -2335,10 +2256,10 @@ PolygonCollider2D:
       - {x: -13.686621, y: -20.375353}
       - {x: -5.6570644, y: -20.679714}
       - {x: -5.6570644, y: -16.091206}
-    - - {x: 7.165615, y: -15.462643}
-      - {x: 7.165615, y: -17.348331}
-      - {x: 11.691267, y: -17.348331}
-      - {x: 11.691267, y: -15.462643}
+    - - {x: 6.750533, y: -17.220638}
+      - {x: 6.7016993, y: -18.95983}
+      - {x: 11.1052685, y: -18.95983}
+      - {x: 11.1052685, y: -17.220638}
     - - {x: -28.47389, y: -11.062704}
       - {x: -28.47389, y: -16.971193}
       - {x: -18.919739, y: -16.971193}
@@ -2425,6 +2346,14 @@ PolygonCollider2D:
       - {x: 4.148514, y: 25.645359}
       - {x: 8.548453, y: 25.645359}
       - {x: 8.548453, y: 27.531048}
+    - - {x: -27.92772, y: -34.546436}
+      - {x: -27.899912, y: -32.694542}
+      - {x: -23.410206, y: -32.74555}
+      - {x: -23.466469, y: -34.55361}
+    - - {x: 22.72844, y: -13.079073}
+      - {x: 22.766901, y: -14.8143635}
+      - {x: 27.13319, y: -14.761819}
+      - {x: 27.167334, y: -13.093365}
   m_UseDelaunayMesh: 0
 --- !u!212 &1048422682 stripped
 SpriteRenderer:
@@ -2883,11 +2812,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3342317678572968548, guid: f39a3d8d60ba21f4d80a8c2c048ca284, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 3342317678572968548, guid: f39a3d8d60ba21f4d80a8c2c048ca284, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 3342317678572968548, guid: f39a3d8d60ba21f4d80a8c2c048ca284, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3846,12 +3775,12 @@ PolygonCollider2D:
       - {x: 40.353725, y: -28.033897}
       - {x: 51.227863, y: -28.033897}
       - {x: 51.227863, y: -24.891083}
-    - - {x: -28.348179, y: -24.262522}
-      - {x: -28.348179, y: -25.896784}
-      - {x: -28.096754, y: -26.148209}
-      - {x: -23.822527, y: -26.148209}
-      - {x: -23.75967, y: -25.833927}
-      - {x: -23.75967, y: -24.262522}
+    - - {x: -28.258219, y: -24.32999}
+      - {x: -28.213242, y: -25.829311}
+      - {x: -27.871853, y: -26.080738}
+      - {x: -24.137388, y: -26.035759}
+      - {x: -23.872122, y: -25.833927}
+      - {x: -23.87212, y: -24.374971}
     - - {x: -45.759365, y: -11.879835}
       - {x: -45.88508, y: -12.005548}
       - {x: -45.88508, y: -21.936838}
@@ -4073,7 +4002,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
