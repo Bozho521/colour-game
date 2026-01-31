@@ -8,14 +8,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 10.0f;
     [SerializeField] private float climbSpeed = 5.0f;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] [Tooltip("Coyote Time")] private float mayJump = 0.5f;
+    [SerializeField] private float mayJumpTime = 0.5f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
 
     private Rigidbody2D rb;
     private Collider2D coll;
     private float horizontalInput;
     private float verticalInput;
-    private float currentSpeed;
     private float jumpCooldownTimer;
+    private float mayJumpCounter;
+    private float jumpBufferCounter;
     private float originalGravity;
 
     private bool facingRight = true;
@@ -31,29 +33,28 @@ public class PlayerMovement : MonoBehaviour
     public void SetOnLadder(bool state)
     {
         isOnLadder = state;
-        if (isOnLadder)
-        {
-            rb.gravityScale = 0;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-        }
-        else
-        {
-            rb.gravityScale = originalGravity;
-        }
-    }
-
-    private void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
+        rb.gravityScale = state ? 0 : originalGravity;
+        if (state) rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
     }
 
     bool isGrounded()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
-        return hit.collider != null && !hit.collider.isTrigger;
+        float extraHeight = 0.1f;
+        Vector2 boxSize = new Vector2(coll.bounds.size.x * 0.6f, coll.bounds.size.y);
+
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(coll.bounds.center, boxSize, 0f, Vector2.down, extraHeight, groundLayer);
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider == coll) continue;
+
+            if (!hit.collider.isTrigger)
+            {
+                Debug.DrawRay(hit.point, Vector2.up * 0.2f, Color.green);
+                return true;
+            }
+        }
+        return false;
     }
 
     void Update()
@@ -61,25 +62,33 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (jumpCooldownTimer > 0)
-            jumpCooldownTimer -= Time.deltaTime;
+        if (jumpCooldownTimer > 0) jumpCooldownTimer -= Time.deltaTime;
 
-        // baby's first coyote time
         if (isGrounded() && jumpCooldownTimer <= 0)
-            mayJump = 0.5f;
+            mayJumpCounter = mayJumpTime;
         else
-            mayJump -= Time.deltaTime;
+            mayJumpCounter -= Time.deltaTime;
 
-        if (Input.GetButtonDown("Jump") && (mayJump > 0f || isOnLadder))
+        if (Input.GetButtonDown("Jump"))
+            jumpBufferCounter = jumpBufferTime;
+        else
+            jumpBufferCounter -= Time.deltaTime;
+
+        if (jumpBufferCounter > 0f && (mayJumpCounter > 0f || isOnLadder))
         {
-            SetOnLadder(false);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-
-            rb.AddForce(new Vector2(0, Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y))), ForceMode2D.Impulse);
-
-            mayJump = 0f;
-            jumpCooldownTimer = 0.2f;
+            PerformJump();
         }
+    }
+
+    private void PerformJump()
+    {
+        SetOnLadder(false);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+        rb.AddForce(Vector2.up * Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y)), ForceMode2D.Impulse);
+
+        mayJumpCounter = 0f;
+        jumpBufferCounter = 0f;
+        jumpCooldownTimer = 0.2f;
     }
 
     void FixedUpdate()
@@ -89,15 +98,30 @@ public class PlayerMovement : MonoBehaviour
 
         float targetX = Mathf.Clamp(rb.linearVelocity.x, -topSpeed, topSpeed);
 
-        float targetY = rb.linearVelocity.y;
         if (isOnLadder)
         {
-            targetY = verticalInput * climbSpeed;
-        }
 
-        rb.linearVelocity = new Vector2(targetX, targetY);
+            float targetY = verticalInput * climbSpeed;
+
+            rb.linearVelocity = new Vector2(targetX * 0.5f, targetY);
+
+            if (verticalInput == 0 && horizontalInput == 0)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(targetX, rb.linearVelocity.y);
+        }
 
         if (horizontalInput > 0 && facingRight) Flip();
         else if (horizontalInput < 0 && !facingRight) Flip();
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 }

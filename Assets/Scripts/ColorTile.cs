@@ -52,7 +52,6 @@ public class ColorTile : MonoBehaviour
         }
     }
 
-    // Helper to compare colors (since floating point colors can be slightly off)
     bool ColorsMatch(Color a, Color b)
     {
         return Mathf.Abs(a.r - b.r) < 0.1f &&
