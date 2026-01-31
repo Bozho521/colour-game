@@ -22,8 +22,6 @@ public class DeathZone : MonoBehaviour
 
         if (resetTimer >= 1f)
             ResetPlayer();
-
-        Debug.Log(resetTimer);
     }
 
     private void ResetPlayer()
