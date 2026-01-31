@@ -100,7 +100,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (isOnLadder)
         {
-            rb.linearVelocity = new Vector2(targetX, verticalInput * climbSpeed);
+
+            float targetY = verticalInput * climbSpeed;
+
+            rb.linearVelocity = new Vector2(targetX * 0.5f, targetY);
+
+            if (verticalInput == 0 && horizontalInput == 0)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
         else
         {
