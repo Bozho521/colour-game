@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ColorTile : MonoBehaviour
 {
-    [SerializeField] private float switchBuffer;
+    [SerializeField] private float switchBuffer = 0.1f;
 
-    public int tileColorIndex;
+    public Color myTileColor;
+
     private float _bufferTimer;
     private bool _targetTriggerState;
 
@@ -12,10 +13,15 @@ public class ColorTile : MonoBehaviour
     private GameObject _player;
     private Collider2D _playerCol;
     private Rigidbody2D _playerRb;
+    private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
         _collider2D = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (_spriteRenderer != null) _spriteRenderer.color = myTileColor;
+
         _player = GameObject.FindGameObjectWithTag("Player");
         if (_player != null)
         {
@@ -28,7 +34,7 @@ public class ColorTile : MonoBehaviour
     {
         if (_collider2D == null || _player == null) return;
 
-        bool shouldBeTrigger = (BackGround_switch.CurrentColorIndex == tileColorIndex);
+        bool shouldBeTrigger = ColorsMatch(BackGround_switch.Instance.GetCurrentColor(), myTileColor);
 
         if (shouldBeTrigger != _targetTriggerState)
         {
@@ -46,6 +52,14 @@ public class ColorTile : MonoBehaviour
         }
     }
 
+    // Helper to compare colors (since floating point colors can be slightly off)
+    bool ColorsMatch(Color a, Color b)
+    {
+        return Mathf.Abs(a.r - b.r) < 0.1f &&
+               Mathf.Abs(a.g - b.g) < 0.1f &&
+               Mathf.Abs(a.b - b.b) < 0.1f;
+    }
+
     void ApplyColliderLogic(bool shouldBeTrigger)
     {
         if (_collider2D.isTrigger && !shouldBeTrigger)
@@ -61,6 +75,7 @@ public class ColorTile : MonoBehaviour
 
     void ForceTeleportToTop()
     {
+        if (_playerCol == null) return;
         ColliderDistance2D dist = _collider2D.Distance(_playerCol);
 
         if (dist.isValid && dist.distance < 0)

@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using System.Collections;
-using UnityEditor.Rendering.Canvas.ShaderGraph;
 
 public class BackGround_switch : MonoBehaviour
 {
-    public Color[] colors = new Color[4];
+    public static BackGround_switch Instance;
+
     public static int CurrentColorIndex = 0;
+    public Color[] colors = new Color[4];
 
     [SerializeField] private SpriteRenderer transition;
     [SerializeField] private SpriteRenderer background;
@@ -17,28 +16,51 @@ public class BackGround_switch : MonoBehaviour
     private float currentFade = 0f;
     private Coroutine colorCoroutine;
 
-    [SerializeField] bool readyToSwitch = true;
+    [SerializeField] private bool readyToSwitch = true;
+
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     void Start()
     {
-        if (colors.Length > 0) Debug.Log("Initial Color: " + colors[CurrentColorIndex]);
-        //StartCoroutine(SetColor(colors[CurrentColorIndex]));
+        transition.material.SetFloat("_FadeAmount", 0);
     }
 
     void Update()
     {
-        if (colors.Length > 0 && Mouse.current != null && readyToSwitch && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            CurrentColorIndex = (CurrentColorIndex + 1) % colors.Length;
-            if (colorCoroutine != null) StopCoroutine(colorCoroutine);
-            StartCoroutine(SetColor(colors[CurrentColorIndex]));
-        }
-
         currentFade = Mathf.MoveTowards(currentFade, lerpTarget, Time.deltaTime * transitionSpeed);
         transition.material.SetFloat("_FadeAmount", currentFade);
     }
 
-    public IEnumerator SetColor(Color color)
+    public void SwitchToCollectedColor(Color targetColor, int index, bool instant = false)
+    {
+        CurrentColorIndex = index;
+
+        if (instant)
+        {
+            background.color = targetColor;
+            currentFade = 0f;
+            lerpTarget = 0f;
+            transition.material.SetFloat("_FadeAmount", 0);
+            readyToSwitch = true;
+            return;
+        }
+
+        if (!readyToSwitch) return;
+
+        if (colorCoroutine != null) StopCoroutine(colorCoroutine);
+        colorCoroutine = StartCoroutine(TransitionRoutine(targetColor));
+    }
+
+    public Color GetCurrentColor()
+    {
+        return background.color;
+    }
+
+    private IEnumerator TransitionRoutine(Color color)
     {
         readyToSwitch = false;
         transition.material.SetColor("_Color1", color);

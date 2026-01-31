@@ -8,8 +8,9 @@ public class HatSpawner : MonoBehaviour
 
     void Start()
     {
-        if (colors.Length < 4)
+        if (colors.Length < 4 || allHatsInMap.Count < 3)
         {
+            Debug.LogError("Not enough colors or map triangles assigned!");
             return;
         }
 
@@ -18,18 +19,31 @@ public class HatSpawner : MonoBehaviour
 
     void AssignHats()
     {
+        List<Color> shuffledColors = new List<Color>(colors);
+        for (int i = 0; i < shuffledColors.Count; i++)
+        {
+            Color temp = shuffledColors[i];
+            int randomIndex = Random.Range(i, shuffledColors.Count);
+            shuffledColors[i] = shuffledColors[randomIndex];
+            shuffledColors[randomIndex] = temp;
+        }
+
+        PlayerHats player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHats>();
+        if (player != null)
+        {
+            player.AddHat(shuffledColors[0]);
+        }
+
         List<HatCollectible> availableHats = new List<HatCollectible>(allHatsInMap);
 
-        int countToSpawn = Mathf.Min(colors.Length, availableHats.Count);
-
-        for (int i = 0; i < countToSpawn; i++)
+        for (int i = 1; i < 4; i++)
         {
             if (availableHats.Count == 0) break;
 
             int randomIndex = Random.Range(0, availableHats.Count);
             HatCollectible chosenHat = availableHats[randomIndex];
 
-            chosenHat.ActivateHat(colors[i]);
+            chosenHat.ActivateHat(shuffledColors[i]);
 
             availableHats.RemoveAt(randomIndex);
         }
