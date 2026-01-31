@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private float jumpCooldownTimer;
 
+    private bool facingRight = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +33,23 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = rb.linearVelocity.x;
         currentSpeed = Mathf.Clamp(currentSpeed, -topSpeed, topSpeed);
         rb.linearVelocityX = currentSpeed;
+
+        if (horizontalInput > 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (horizontalInput < 0 && !facingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 
     bool isGrounded()
