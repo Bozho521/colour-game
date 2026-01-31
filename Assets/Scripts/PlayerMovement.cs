@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(targetX, targetY);
 
-        if (horizontalInput > 0 && !facingRight) Flip();
-        else if (horizontalInput < 0 && facingRight) Flip();
+        if (horizontalInput > 0 && facingRight) Flip();
+        else if (horizontalInput < 0 && !facingRight) Flip();
     }
 }
