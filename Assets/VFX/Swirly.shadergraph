@@ -13,9 +13,6 @@
             "m_Id": "639168a695e942d9a384e0e6203cb026"
         },
         {
-            "m_Id": "e97ef7a7a6fd4610811e36d8fab77f17"
-        },
-        {
             "m_Id": "fd8f0bdcb7c24197a0064c2df4715997"
         },
         {
@@ -1287,8 +1284,8 @@
     "m_ObjectId": "188991b4ddc54b14aa3294499b5a7451",
     "m_Title": "Generate Pattern",
     "m_Position": {
-        "x": -3551.33349609375,
-        "y": 124.66667175292969
+        "x": -3551.333251953125,
+        "y": 124.66663360595703
     }
 }
 
@@ -1458,8 +1455,8 @@
     "m_ObjectId": "25597ab2bea74b4ca90b33d5f58d07aa",
     "m_Title": "Colorize",
     "m_Position": {
-        "x": -1885.3331298828125,
-        "y": 124.66665649414063
+        "x": -1885.333251953125,
+        "y": 124.66663360595703
     }
 }
 
@@ -2097,8 +2094,8 @@
     "m_ObjectId": "4457fb6e6ea844d2a91ed251a156398d",
     "m_Title": "Fade in/out",
     "m_Position": {
-        "x": -1889.3331298828125,
-        "y": 652.6665649414063
+        "x": -1889.3333740234375,
+        "y": 652.6666259765625
     }
 }
 
@@ -4144,9 +4141,6 @@
             "m_Id": "fd8f0bdcb7c24197a0064c2df4715997"
         },
         {
-            "m_Id": "e97ef7a7a6fd4610811e36d8fab77f17"
-        },
-        {
             "m_Id": "545274fce66a405b929f2364e142378d"
         }
     ]
@@ -5535,38 +5529,6 @@
     },
     "m_Labels": [],
     "m_Channel": 0
-}
-
-{
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "e97ef7a7a6fd4610811e36d8fab77f17",
-    "m_Guid": {
-        "m_GuidSerialized": "ed09efca-7662-450b-9ba4-991d74a39a5f"
-    },
-    "m_Name": "Color2",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Color2",
-    "m_DefaultReferenceName": "_Color2",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": {
-        "r": 0.6823529601097107,
-        "g": 0.8941176533699036,
-        "b": 0.29019609093666079,
-        "a": 1.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
 }
 
 {
