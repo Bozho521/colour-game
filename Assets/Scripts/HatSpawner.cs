@@ -1,14 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class HatSpawner : MonoBehaviour
 {
-    [SerializeField] private List<HatCollectible> allHatsInMap;
+    [System.Serializable]
+    public class ColorZoneGroup
+    {
+        public string zoneName;
+        public Color floorColor;
+        public List<HatCollectible> spawnPoints;
+    }
+
+    [Header("Setup")]
+    [SerializeField] private ColorZoneGroup[] zoneGroups;
     [SerializeField] private Color[] colors = new Color[4];
 
     void Start()
     {
-        if (colors.Length < 4 || allHatsInMap.Count < 3)
+        if (colors.Length < 4 || zoneGroups.Length < 3)
         {
             Debug.LogError("Not enough colors or map triangles assigned!");
             return;
@@ -29,31 +38,66 @@ public class HatSpawner : MonoBehaviour
         }
 
         PlayerHats player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHats>();
-        if (player != null)
+        if (player != null) player.AddHat(shuffledColors[0]);
+
+        List<ColorZoneGroup> availableZones = new List<ColorZoneGroup>(zoneGroups);
+        int hatsSpawned = 0;
+        int colorIndex = 1;
+
+        while (hatsSpawned < 3 && colorIndex < 4 && availableZones.Count > 0)
         {
-            player.AddHat(shuffledColors[0]);
-        }
+            int zoneIdx = Random.Range(0, availableZones.Count);
+            ColorZoneGroup currentZone = availableZones[zoneIdx];
+            Color targetColor = shuffledColors[colorIndex];
 
-        List<HatCollectible> availableHats = new List<HatCollectible>(allHatsInMap);
-
-        for (int i = 1; i < 4; i++)
-        {
-            if (availableHats.Count == 0) break;
-
-            int randomIndex = Random.Range(0, availableHats.Count);
-            HatCollectible chosenHat = availableHats[randomIndex];
-
-            chosenHat.ActivateHat(shuffledColors[i]);
-
-            availableHats.RemoveAt(randomIndex);
-        }
-
-        foreach (HatCollectible leftover in availableHats)
-        {
-            if (leftover != null)
+            if (ColorsMatch(targetColor, currentZone.floorColor))
             {
-                Destroy(leftover.gameObject);
+                if (colorIndex + 1 < 4)
+                {
+                    shuffledColors[colorIndex] = shuffledColors[colorIndex + 1];
+                    shuffledColors[colorIndex + 1] = targetColor;
+                    targetColor = shuffledColors[colorIndex];
+                }
+                else
+                {
+                    shuffledColors[colorIndex] = shuffledColors[0];
+                    shuffledColors[0] = targetColor;
+                    targetColor = shuffledColors[colorIndex];
+                }
+            }
+
+            if (currentZone.spawnPoints.Count > 0)
+            {
+                int pointIdx = Random.Range(0, currentZone.spawnPoints.Count);
+                HatCollectible chosenHat = currentZone.spawnPoints[pointIdx];
+
+                chosenHat.ActivateHat(targetColor);
+
+                currentZone.spawnPoints.RemoveAt(pointIdx);
+
+                hatsSpawned++;
+                colorIndex++;
+                availableZones.RemoveAt(zoneIdx);
+            }
+            else
+            {
+                availableZones.RemoveAt(zoneIdx);
             }
         }
+
+        foreach (var zone in zoneGroups)
+        {
+            foreach (var leftover in zone.spawnPoints)
+            {
+                if (leftover != null) Destroy(leftover.gameObject);
+            }
+        }
+    }
+
+    private bool ColorsMatch(Color a, Color b)
+    {
+        return Mathf.Abs(a.r - b.r) < 0.1f &&
+               Mathf.Abs(a.g - b.g) < 0.1f &&
+               Mathf.Abs(a.b - b.b) < 0.1f;
     }
 }
