@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SwirlyMat
+  m_Name: SwirlyMatWinScreen
   m_Shader: {fileID: -6465566751694194690, guid: 35dcb541fab9d2141bfa644210e92fbb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,7 +45,7 @@ Material:
     - _ColorMask: 15
     - _EffectSpeed: 0.5
     - _EffectStrength: 5
-    - _FadeAmount: 1
+    - _FadeAmount: 0.9
     - _NoiseScale: 100
     - _RotationSpeed: 250
     - _Stencil: 0
