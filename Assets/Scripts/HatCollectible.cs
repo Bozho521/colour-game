@@ -8,7 +8,7 @@ public class HatCollectible : MonoBehaviour
 
     public void ActivateHat(Color colorToSet)
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         myColor = colorToSet;
         sr.color = myColor;
         gameObject.SetActive(true);

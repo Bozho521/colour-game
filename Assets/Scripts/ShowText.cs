@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShowText : MonoBehaviour
@@ -10,6 +11,8 @@ public class ShowText : MonoBehaviour
     public string textValue;
     public TextMeshProUGUI textElement;
     public GameObject Canvas;
+    private string sceneName;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,13 +21,26 @@ public class ShowText : MonoBehaviour
         textElement.text = "Something else";
         StartCoroutine(Instruction());
         Debug.Log("timer started");
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
     }
     IEnumerator Instruction()
     {
-        yield return new WaitForSeconds(5);
-        Canvas.SetActive(true);
-        textElement.text = "Get me on a Button! Space = Jump!";
-        Debug.Log("5 seconds has passes");
+       // if (sceneName == "MainMenu")
+        
+            yield return new WaitForSeconds(5);
+            Canvas.SetActive(true);
+            textElement.text = "Get me on a Button! Space = Jump!";
+            Debug.Log("5 seconds has passed");
+            yield return new WaitForSeconds(10);
+            Canvas.SetActive(false);
+            Debug.Log("canvas deactivate");
+
+        
+
+
+        //else if in level scene (diff text)
+
     }
 
     // Update is called once per frame

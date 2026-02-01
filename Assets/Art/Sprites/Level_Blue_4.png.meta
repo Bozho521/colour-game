@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 74172d58519424f0eba65f4324a633e9
+guid: 7ebeca3ba23cc44678fc874a8a0e16a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7936838218271547385
-    second: Level_Purple_2_0
+      213: 7057458779873248413
+    second: Level_Blue_4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level_Purple_2_0
+      name: Level_Blue_4_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7002e2011bfaad190800000000000000
-      internalID: -7936838218271547385
+      spriteID: d948e474e5121f160800000000000000
+      internalID: 7057458779873248413
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Level_Purple_2_0: -7936838218271547385
+      Level_Blue_4_0: 7057458779873248413
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

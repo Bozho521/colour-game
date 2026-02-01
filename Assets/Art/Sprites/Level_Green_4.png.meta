@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 64927d5bd2d154929a2da5a410d309f3
+guid: 1622f9d0da4a0495890a1a3cad9af87f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3383333130606796851
-    second: Level_Blue_1_0
+      213: -5293370626696637210
+    second: Level_Green_4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level_Blue_1_0
+      name: Level_Green_4_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 330e0ae7e8304fe20800000000000000
-      internalID: 3383333130606796851
+      spriteID: 6e49243e57b2a86b0800000000000000
+      internalID: -5293370626696637210
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Level_Blue_1_0: 3383333130606796851
+      Level_Green_4_0: -5293370626696637210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

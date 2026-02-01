@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 186c1a150694145d58e884e6517362f0
+guid: cf94fb5b9b16d4801a02353c11c997a4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8544762028101407740
-    second: Level_Purple_1_0
+      213: -695044776728336903
+    second: Player_Sun_0
+  - first:
+      213: 4003571871204411744
+    second: Player_Sun_1
+  - first:
+      213: 1199296885906102142
+    second: Player_Sun_2
+  - first:
+      213: 4049525385997443363
+    second: Player_Sun_3
+  - first:
+      213: -5877739730981086115
+    second: Player_Sun_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +108,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level_Purple_1_0
+      name: Player_Sun_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 12871
-        height: 10233
+        x: 622
+        y: 1084
+        width: 392
+        height: 366
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40ce4c02538ea6980800000000000000
-      internalID: -8544762028101407740
+      spriteID: 9f5ed144574ba56f0800000000000000
+      internalID: -695044776728336903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Sun_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 638
+        width: 404
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06982efa76b8f8730800000000000000
+      internalID: 4003571871204411744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Sun_2
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 10
+        width: 1070
+        height: 974
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e775aa0e922c4a010800000000000000
+      internalID: 1199296885906102142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Sun_3
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 620
+        width: 405
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321ed4d12edc23830800000000000000
+      internalID: 4049525385997443363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Sun_4
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 0
+        width: 405
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c1ca43bd21e6ea0800000000000000
+      internalID: -5877739730981086115
       vertices: []
       indices: 
       edges: []
@@ -148,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Level_Purple_1_0: -8544762028101407740
+      Player_Sun_0: -695044776728336903
+      Player_Sun_1: 4003571871204411744
+      Player_Sun_2: 1199296885906102142
+      Player_Sun_3: 4049525385997443363
+      Player_Sun_4: -5877739730981086115
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

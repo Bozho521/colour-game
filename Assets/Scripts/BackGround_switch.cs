@@ -30,7 +30,7 @@ public class BackGround_switch : MonoBehaviour
     void Start()
     {
         transition.material.SetFloat("_FadeAmount", 0);
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         //audioSource.clip = SwirlySound;
     }
 
