@@ -10,19 +10,15 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f; // Resume the game
-        transform.GetChild(0).gameObject.SetActive(false); // Hide pause menu UI
+        transform.GetChild(1).gameObject.SetActive(false); // Hide pause menu UI
     }
 
-    private int pauseID = 0; // Assuming the pause menu is the first child
+    private int pauseID = 1; // Assuming the pause menu is the second child
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && finalHat != null)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu(pauseID);
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && finalHat == null)
-        {
-            Debug.Log("Final hat is missing, cannot pause the game.");
         }
     }
 
