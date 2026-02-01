@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,8 +13,6 @@ public class ShowText : MonoBehaviour
     public TextMeshProUGUI textElement;
     public GameObject Canvas;
     private string sceneName;
-    
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +42,7 @@ public class ShowText : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             Canvas.SetActive(true);
-            textElement.text = "Now, where's my hat? It's here somewhere";
+            textElement.text = "Now, where are my hats? If you find one, press a number 1-4 for a hat trick";
             Debug.Log("5 seconds has passed");
             yield return new WaitForSeconds(10);
             Canvas.SetActive(false);
@@ -53,18 +52,13 @@ public class ShowText : MonoBehaviour
     }
 
 
-    public void GotAHat()
-    {
-      
-
-    }
-   
+ 
     
     // Update is called once per frame
     void Update()
 
     {
-
+  
 
     }
 }
