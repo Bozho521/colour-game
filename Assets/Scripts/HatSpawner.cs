@@ -40,48 +40,46 @@ public class HatSpawner : MonoBehaviour
         PlayerHats player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHats>();
         if (player != null) player.AddHat(shuffledColors[0]);
 
+        List<Color> hatColors = new List<Color> { shuffledColors[1], shuffledColors[2], shuffledColors[3] };
+
         List<ColorZoneGroup> availableZones = new List<ColorZoneGroup>(zoneGroups);
-        int hatsSpawned = 0;
-        int colorIndex = 1;
 
-        while (hatsSpawned < 3 && colorIndex < 4 && availableZones.Count > 0)
+        foreach (Color targetColor in hatColors)
         {
-            int zoneIdx = Random.Range(0, availableZones.Count);
-            ColorZoneGroup currentZone = availableZones[zoneIdx];
-            Color targetColor = shuffledColors[colorIndex];
+            bool spawned = false;
 
-            if (ColorsMatch(targetColor, currentZone.floorColor))
+            for (int i = 0; i < availableZones.Count; i++)
             {
-                if (colorIndex + 1 < 4)
+                ColorZoneGroup zone = availableZones[i];
+
+                if (!ColorsMatch(targetColor, zone.floorColor))
                 {
-                    shuffledColors[colorIndex] = shuffledColors[colorIndex + 1];
-                    shuffledColors[colorIndex + 1] = targetColor;
-                    targetColor = shuffledColors[colorIndex];
-                }
-                else
-                {
-                    shuffledColors[colorIndex] = shuffledColors[0];
-                    shuffledColors[0] = targetColor;
-                    targetColor = shuffledColors[colorIndex];
+                    if (zone.spawnPoints.Count > 0)
+                    {
+                        int pointIdx = Random.Range(0, zone.spawnPoints.Count);
+                        HatCollectible chosenHat = zone.spawnPoints[pointIdx];
+
+                        chosenHat.ActivateHat(targetColor);
+
+                        zone.spawnPoints.RemoveAt(pointIdx);
+
+                        availableZones.RemoveAt(i);
+
+                        spawned = true;
+                        break;
+                    }
                 }
             }
 
-            if (currentZone.spawnPoints.Count > 0)
+            if (!spawned && availableZones.Count > 0)
             {
-                int pointIdx = Random.Range(0, currentZone.spawnPoints.Count);
-                HatCollectible chosenHat = currentZone.spawnPoints[pointIdx];
+                int fallbackIdx = 0;
+                ColorZoneGroup fallbackZone = availableZones[fallbackIdx];
+                int pointIdx = Random.Range(0, fallbackZone.spawnPoints.Count);
 
-                chosenHat.ActivateHat(targetColor);
-
-                currentZone.spawnPoints.RemoveAt(pointIdx);
-
-                hatsSpawned++;
-                colorIndex++;
-                availableZones.RemoveAt(zoneIdx);
-            }
-            else
-            {
-                availableZones.RemoveAt(zoneIdx);
+                fallbackZone.spawnPoints[pointIdx].ActivateHat(targetColor);
+                fallbackZone.spawnPoints.RemoveAt(pointIdx);
+                availableZones.RemoveAt(fallbackIdx);
             }
         }
 
