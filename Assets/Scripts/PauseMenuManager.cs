@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    [SerializeField] private GameObject finalHat;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -14,9 +16,13 @@ public class PauseMenuManager : MonoBehaviour
     private int pauseID = 0; // Assuming the pause menu is the first child
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && finalHat != null)
         {
             ToggleMenu(pauseID);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && finalHat == null)
+        {
+            Debug.Log("Final hat is missing, cannot pause the game.");
         }
     }
 
