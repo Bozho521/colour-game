@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0.5
     - _ColorMask: 15
-    - _EffectSpeed: 0.5
+    - _EffectSpeed: 0.2
     - _EffectStrength: 5
     - _FadeAmount: 0.9
     - _NoiseScale: 100
