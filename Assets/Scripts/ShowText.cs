@@ -12,7 +12,7 @@ public class ShowText : MonoBehaviour
     public TextMeshProUGUI textElement;
     public GameObject Canvas;
     private string sceneName;
-
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +24,7 @@ public class ShowText : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         int buildIndex = currentScene.buildIndex;
+        Canvas.SetActive(false);
     }
     IEnumerator Instruction()
     {
@@ -38,15 +39,27 @@ public class ShowText : MonoBehaviour
             Debug.Log("canvas deactivate");
         }
 
-        
-
-     
-
-
-                //else if in level scene (diff text)
-
+        else
+        {
+            yield return new WaitForSeconds(5);
+            Canvas.SetActive(true);
+            textElement.text = "Now, where's my hat? It's here somewhere";
+            Debug.Log("5 seconds has passed");
+            yield return new WaitForSeconds(10);
+            Canvas.SetActive(false);
+            Debug.Log("canvas deactivate");
         }
 
+    }
+
+
+    public void GotAHat()
+    {
+      
+
+    }
+   
+    
     // Update is called once per frame
     void Update()
 
