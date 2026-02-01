@@ -434,6 +434,7 @@ MonoBehaviour:
     m_Bits: 8
   mayJumpTime: 0.5
   jumpBufferTime: 0.2
+  Canvas: {fileID: 0}
 --- !u!61 &342043971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1219,7 +1220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1099790961
 MonoBehaviour:
   m_ObjectHideFlags: 0

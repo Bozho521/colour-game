@@ -26,19 +26,18 @@ public class ShowText : MonoBehaviour
     }
     IEnumerator Instruction()
     {
+       // if (sceneName == "MainMenu")
+        
+            yield return new WaitForSeconds(5);
+            Canvas.SetActive(true);
+            textElement.text = "Get me on a Button! Space = Jump!";
+            Debug.Log("5 seconds has passed");
+            yield return new WaitForSeconds(10);
+            Canvas.SetActive(false);
+            Debug.Log("canvas deactivate");
 
-        if (sceneName == "MainMenu")
-        {
+        
 
-        }
-
-        yield return new WaitForSeconds(5);
-        Canvas.SetActive(true);
-        textElement.text = "Get me on a Button! Space = Jump!";
-        Debug.Log("5 seconds has passes");
-        yield return new WaitForSeconds(10);
-        Canvas.SetActive(false);
-        Debug.Log("canvas deactivate");
 
         //else if in level scene (diff text)
 
