@@ -617,7 +617,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Code
 
-    SFX'
+    VFX'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0fc00fad274a79b47af31a32c99ed45d, type: 2}
   m_sharedMaterial: {fileID: 8881843855465436006, guid: 0fc00fad274a79b47af31a32c99ed45d, type: 2}
