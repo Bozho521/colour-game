@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c68524e16ec054eca93036a7ae9e7572
+guid: 4e4c6b22a054446e9a005ec0478d6145
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4778870105266271298
-    second: Level_Red_2_0
+      213: -3549064774388802021
+    second: Level_Red_4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level_Red_2_0
+      name: Level_Red_4_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 244312c8a05f15240800000000000000
-      internalID: 4778870105266271298
+      spriteID: b1e14b534603fbec0800000000000000
+      internalID: -3549064774388802021
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Level_Red_2_0: 4778870105266271298
+      Level_Red_4_0: -3549064774388802021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
