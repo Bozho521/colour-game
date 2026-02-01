@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float mayJumpTime = 0.5f;
     [SerializeField] private float jumpBufferTime = 0.2f;
 
+
+
     private Rigidbody2D rb;
     private Collider2D coll;
     private float horizontalInput;
@@ -19,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float mayJumpCounter;
     private float jumpBufferCounter;
     private float originalGravity;
+    private Transform playerSprite;
+    public GameObject Canvas;
 
     private bool facingRight = true;
     private bool isOnLadder = false;
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         originalGravity = rb.gravityScale;
+        playerSprite = transform.GetChild(0);
     }
 
     public void SetOnLadder(bool state)
@@ -122,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
     private void Flip()
     {
         facingRight = !facingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        playerSprite.localScale = new Vector3(-playerSprite.localScale.x, playerSprite.localScale.y, 1);
     }
 }
