@@ -23,11 +23,12 @@ public class ShowText : MonoBehaviour
         Debug.Log("timer started");
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
+        int buildIndex = currentScene.buildIndex;
     }
     IEnumerator Instruction()
     {
-       // if (sceneName == "MainMenu")
-        
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
             yield return new WaitForSeconds(5);
             Canvas.SetActive(true);
             textElement.text = "Get me on a Button! Space = Jump!";
@@ -35,13 +36,16 @@ public class ShowText : MonoBehaviour
             yield return new WaitForSeconds(10);
             Canvas.SetActive(false);
             Debug.Log("canvas deactivate");
+        }
 
         
 
+     
 
-        //else if in level scene (diff text)
 
-    }
+                //else if in level scene (diff text)
+
+        }
 
     // Update is called once per frame
     void Update()
