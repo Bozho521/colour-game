@@ -29,9 +29,16 @@ public class BackGround_switch : MonoBehaviour
 
     void Start()
     {
-        transition.material.SetFloat("_FadeAmount", 0);
         audioSource = GetComponent<AudioSource>();
         //audioSource.clip = SwirlySound;
+
+        background.color = Color.white;
+        transition.material.SetColor("_Color1", Color.white);
+        transition.material.SetFloat("_FadeAmount", 0);
+
+        currentFade = 0f;
+        lerpTarget = 0f;
+        readyToSwitch = true;
     }
 
     void Update()
@@ -67,14 +74,22 @@ public class BackGround_switch : MonoBehaviour
         return background.color;
     }
 
+    public bool IsReady() => readyToSwitch;
+
     private IEnumerator TransitionRoutine(Color color)
     {
         readyToSwitch = false;
+
         transition.material.SetColor("_Color1", color);
         lerpTarget = 1.0f;
+
         yield return new WaitForSeconds(1f / transitionSpeed);
+
         background.color = color;
         lerpTarget = 0.0f;
+
+        yield return new WaitForSeconds(1f / transitionSpeed);
+
         readyToSwitch = true;
     }
 }
