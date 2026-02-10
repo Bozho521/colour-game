@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpBufferTime = 0.2f;
 
 
+    [Header("Wall Jump Settings")]
+    [SerializeField] private float wallJumpHorizontalForce = 8f;
+    [SerializeField] private float wallJumpVerticalForce = 10f;
 
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -21,11 +24,16 @@ public class PlayerMovement : MonoBehaviour
     private float mayJumpCounter;
     private float jumpBufferCounter;
     private float originalGravity;
-    private Transform playerSprite;
-    public GameObject Canvas;
 
     private bool facingRight = true;
     private bool isOnLadder = false;
+
+    private bool isTouchingWall = false;
+    private int wallDirection = 0;
+    private int lastWallJumpDirection = 0;
+
+    private Transform playerSprite;
+    public GameObject Canvas;
 
     void Start()
     {
@@ -38,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
     public void SetOnLadder(bool state)
     {
         isOnLadder = state;
-        rb.gravityScale = state ? 0 : originalGravity;
-        if (state) rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+        rb.gravityScale = state ? 0f : originalGravity;
+        if (state) rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
     }
 
     bool isGrounded()
@@ -53,12 +61,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider == coll) continue;
 
-            if (!hit.collider.isTrigger)
-            {
-                Debug.DrawRay(hit.point, Vector2.up * 0.2f, Color.green);
-                return true;
-            }
+            if (hit.collider.isTrigger) continue;
+
+            return true;
         }
+
         return false;
     }
 
@@ -67,57 +74,105 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (jumpCooldownTimer > 0) jumpCooldownTimer -= Time.deltaTime;
+        if (jumpCooldownTimer > 0f) jumpCooldownTimer -= Time.deltaTime;
 
-        if (isGrounded() && jumpCooldownTimer <= 0)
+        if (isGrounded() && jumpCooldownTimer <= 0f)
+        {
             mayJumpCounter = mayJumpTime;
+            lastWallJumpDirection = 0;
+        }
         else
+        {
             mayJumpCounter -= Time.deltaTime;
+        }
 
         if (Input.GetButtonDown("Jump"))
             jumpBufferCounter = jumpBufferTime;
         else
             jumpBufferCounter -= Time.deltaTime;
 
-        if (jumpBufferCounter > 0f && (mayJumpCounter > 0f || isOnLadder))
+        if (jumpBufferCounter > 0f)
         {
-            PerformJump();
+            if (mayJumpCounter > 0f || isOnLadder)
+            {
+                PerformJump();
+            }
+            else if (isTouchingWall && wallDirection != lastWallJumpDirection)
+            {
+                PerformWallJump(wallDirection);
+                lastWallJumpDirection = wallDirection;
+            }
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
     }
 
     private void PerformJump()
     {
         SetOnLadder(false);
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-        rb.AddForce(Vector2.up * Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y)), ForceMode2D.Impulse);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+
+        float jumpForce = Mathf.Sqrt(2f * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         mayJumpCounter = 0f;
         jumpBufferCounter = 0f;
         jumpCooldownTimer = 0.2f;
     }
 
+    private void PerformWallJump(int direction)
+    {
+        SetOnLadder(false);
+
+        rb.linearVelocity = Vector2.zero;
+
+        float verticalForce = Mathf.Sqrt(2f * wallJumpVerticalForce * Mathf.Abs(Physics2D.gravity.y));
+
+        rb.AddForce(
+            new Vector2(direction * wallJumpHorizontalForce, verticalForce),
+            ForceMode2D.Impulse
+        );
+
+        jumpBufferCounter = 0f;
+        mayJumpCounter = 0f;
+        jumpCooldownTimer = 0.2f;
+
+        if ((direction > 0 && facingRight) || (direction < 0 && !facingRight))
+            Flip();
+    }
+
     void FixedUpdate()
     {
-        if (Mathf.Abs(rb.linearVelocity.x) < topSpeed)
-            rb.AddForce(new Vector2(horizontalInput * acceleration, 0));
-
-        float targetX = Mathf.Clamp(rb.linearVelocity.x, -topSpeed, topSpeed);
-
         if (isOnLadder)
         {
-
-            float targetY = verticalInput * climbSpeed;
-
-            rb.linearVelocity = new Vector2(targetX * 0.5f, targetY);
-
-            if (verticalInput == 0 && horizontalInput == 0)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
+            rb.linearVelocity = new Vector2(
+                horizontalInput * topSpeed * 0.4f,
+                verticalInput * climbSpeed
+            );
+            return;
         }
-        else
+
+        float targetSpeed = horizontalInput * topSpeed;
+        float accelRate = isGrounded() ? acceleration : acceleration * 0.6f;
+
+        float speedDiff = targetSpeed - rb.linearVelocity.x;
+        float movement = speedDiff * accelRate * Time.fixedDeltaTime;
+
+        rb.linearVelocity = new Vector2(
+            rb.linearVelocity.x + movement,
+            rb.linearVelocity.y
+        );
+
+        if (isGrounded() && horizontalInput == 0f)
         {
-            rb.linearVelocity = new Vector2(targetX, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                Mathf.Lerp(rb.linearVelocity.x, 0f, 0.2f),
+                rb.linearVelocity.y
+            );
         }
 
         if (horizontalInput > 0 && facingRight) Flip();
@@ -127,7 +182,33 @@ public class PlayerMovement : MonoBehaviour
     private void Flip()
     {
         facingRight = !facingRight;
-        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         playerSprite.localScale = new Vector3(-playerSprite.localScale.x, playerSprite.localScale.y, 1);
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) == 0)
+            return;
+
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            Vector2 normal = contact.normal;
+
+            if (Mathf.Abs(normal.x) > 0.5f && Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+            {
+                isTouchingWall = true;
+                wallDirection = normal.x > 0 ? 1 : -1;
+                return;
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) == 0)
+            return;
+
+        isTouchingWall = false;
+        wallDirection = 0;
     }
 }
