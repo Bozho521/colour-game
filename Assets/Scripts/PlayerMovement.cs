@@ -53,12 +53,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider == coll) continue;
 
-            if (!hit.collider.isTrigger)
-            {
-                Debug.DrawRay(hit.point, Vector2.up * 0.2f, Color.green);
-                return true;
-            }
+            if (hit.collider.isTrigger) continue;
+
+            return true;
         }
+
         return false;
     }
 
@@ -67,9 +66,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (jumpCooldownTimer > 0) jumpCooldownTimer -= Time.deltaTime;
+        if (jumpCooldownTimer > 0f) jumpCooldownTimer -= Time.deltaTime;
 
-        if (isGrounded() && jumpCooldownTimer <= 0)
+        if (isGrounded() && jumpCooldownTimer <= 0f)
             mayJumpCounter = mayJumpTime;
         else
             mayJumpCounter -= Time.deltaTime;
@@ -83,13 +82,21 @@ public class PlayerMovement : MonoBehaviour
         {
             PerformJump();
         }
+
+        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+        }
     }
 
     private void PerformJump()
     {
         SetOnLadder(false);
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-        rb.AddForce(Vector2.up * Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y)), ForceMode2D.Impulse);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+
+        float jumpForce = Mathf.Sqrt(2f * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
         mayJumpCounter = 0f;
         jumpBufferCounter = 0f;
@@ -98,26 +105,33 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Mathf.Abs(rb.linearVelocity.x) < topSpeed)
-            rb.AddForce(new Vector2(horizontalInput * acceleration, 0));
-
-        float targetX = Mathf.Clamp(rb.linearVelocity.x, -topSpeed, topSpeed);
-
         if (isOnLadder)
         {
-
-            float targetY = verticalInput * climbSpeed;
-
-            rb.linearVelocity = new Vector2(targetX * 0.5f, targetY);
-
-            if (verticalInput == 0 && horizontalInput == 0)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
+            rb.linearVelocity = new Vector2(
+                horizontalInput * topSpeed * 0.4f,
+                verticalInput * climbSpeed
+            );
         }
         else
         {
-            rb.linearVelocity = new Vector2(targetX, rb.linearVelocity.y);
+            float targetSpeed = horizontalInput * topSpeed;
+            float accelRate = isGrounded() ? acceleration : acceleration * 0.6f;
+
+            float speedDiff = targetSpeed - rb.linearVelocity.x;
+            float movement = speedDiff * accelRate * Time.fixedDeltaTime;
+
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x + movement,
+                rb.linearVelocity.y
+            );
+
+            if (isGrounded() && horizontalInput == 0f)
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.Lerp(rb.linearVelocity.x, 0f, 0.2f),
+                    rb.linearVelocity.y
+                );
+            }
         }
 
         if (horizontalInput > 0 && facingRight) Flip();
