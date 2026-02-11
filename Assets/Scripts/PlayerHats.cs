@@ -10,9 +10,9 @@ public class PlayerHats : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < hatSlots.Length; i++)
+        foreach (var slot in hatSlots)
         {
-            if (hatSlots[i] != null) hatSlots[i].gameObject.SetActive(false);
+            if (slot != null) slot.gameObject.SetActive(false);
         }
 
         if (BackGround_switch.Instance != null)
@@ -39,7 +39,7 @@ public class PlayerHats : MonoBehaviour
 
             if (collectedCount == 0)
             {
-                SwitchToColor(0);
+                BackGround_switch.Instance.SwitchToCollectedColor(color, 0, true);
             }
 
             collectedCount++;
@@ -48,14 +48,15 @@ public class PlayerHats : MonoBehaviour
 
     private void SwitchToColor(int index)
     {
-        if (!BackGround_switch.Instance.IsReady()) return;
-
-        if (index >= 0 && index < collectedColors.Count)
+        if (index < collectedColors.Count)
         {
+            Debug.Log($"Switching to Unlocked Color: {index + 1}");
+
             BackGround_switch.Instance.SwitchToCollectedColor(collectedColors[index], index);
         }
         else
         {
+            Debug.Log("You haven't collected that hat yet!");
         }
     }
 }
